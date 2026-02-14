@@ -23,6 +23,7 @@ body{
     text-align:center;
     color:white;
     padding:20px;
+    transition:0.5s;
 }
 
 .container{
@@ -31,7 +32,7 @@ body{
     padding:40px;
     border-radius:25px;
     box-shadow:0 8px 30px rgba(0,0,0,0.2);
-    max-width:400px;
+    max-width:420px;
     width:100%;
     animation:fadeIn 1.5s ease-in-out;
 }
@@ -48,8 +49,6 @@ h1{
 
 .buttons{
     margin-top:25px;
-    position:relative;
-    height:100px;
 }
 
 button{
@@ -59,12 +58,12 @@ button{
     font-size:16px;
     cursor:pointer;
     transition:all 0.3s ease;
+    margin:10px;
 }
 
 #yesBtn{
     background:#00ff99;
     color:black;
-    margin-right:10px;
 }
 
 #noBtn{
@@ -76,6 +75,13 @@ button{
     margin-top:15px;
     font-size:1rem;
     min-height:30px;
+}
+
+.compliment{
+    margin-top:20px;
+    font-size:1.1rem;
+    line-height:1.6;
+    animation:fadeIn 2s ease forwards;
 }
 
 /* Floating Hearts */
@@ -110,6 +116,7 @@ button{
     </div>
 
     <div class="message" id="sadMessage"></div>
+    <div id="complimentBox"></div>
 </div>
 
 <script>
@@ -118,14 +125,14 @@ const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
 const sadMessage = document.getElementById("sadMessage");
 const title = document.getElementById("title");
+const complimentBox = document.getElementById("complimentBox");
 
 const sadTexts = [
 "Don't do that 🥺💔",
 "You're breaking my heart 😭💘",
 "Please think again 😢🌹",
 "Are you sure? 😔💌",
-"My heart is shrinking like this button 💞",
-"Okay okay last chance 🥹❤️"
+"My heart is shrinking like this button 💞"
 ];
 
 let messageIndex = 0;
@@ -139,7 +146,6 @@ noBtn.addEventListener("click", () => {
 
     scale -= 0.15;
     noBtn.style.transform = `scale(${scale})`;
-
     yesBtn.style.transform = `scale(${1 + (1-scale)})`;
 
     if(scale <= 0.4){
@@ -150,9 +156,25 @@ noBtn.addEventListener("click", () => {
 
 // YES Click
 yesBtn.addEventListener("click", () => {
-    title.innerHTML = "YAYYY 😭❤️ I LOVE YOU SO MUCH  💖";
-    sadMessage.innerHTML = "You just made me the happiest person alive 💍✨";
+
+    document.body.style.background = "linear-gradient(135deg,#ff4e8d,#ff1e56)";
     document.querySelector(".buttons").style.display = "none";
+    sadMessage.innerHTML = "";
+
+    title.innerHTML = "YAYY ! I LOVE U SO MUCH Sakshi😚❤️";
+
+    complimentBox.innerHTML = `
+    <div class="compliment">
+        You are not just beautiful on the outside…  
+        your smile lights up my world,  
+        your kindness melts my heart,  
+        and your presence makes everything better.  
+        <br><br>
+        I am the luckiest person alive to have you 💖✨
+        
+    </div>
+    `;
+
     startHearts();
 });
 
